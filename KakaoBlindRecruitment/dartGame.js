@@ -5,29 +5,28 @@
 // 갓 입사한 무지는 코딩 실력을 인정받아 게임의 핵심 부분인 점수 계산 로직을 맡게 되었다.
 
 function solution(dartResult) {
-  let answer = [];
+  let stack = [];
   let BONUSES = { S: 1, D: 2, T: 3};
-  let num = 0; //num의 자릿수 확인용
+  let digit = 0;  // 숫자는 0 ~ 10점으로 숫자 자리수 구분 목적
   
   for (let i = 0; i < dartResult.length; i++) {
-    let data = dartResult.charAt(i);
-    if(+data != data) {
-      if(BONUSES[data]) {
-        answer.push(Math.pow(dartResult.slice(i - num, i), BONUSES[data]));
-        num = 0;
+    let str = dartResult[i];
+    if (+str != str) {
+      if (BONUSES[str]) {
+        stack.push(Math.pow(dartResult.slice(i-digit, i), BONUSES[str]));  // Math.pow(base, exponent) => base^exponent
+        digit = 0;
       } else {
-        const option = data === '*' ? 2 : -1;
-        const len = answer.length;
-        if (option == 2 && len > 1) {
-          answer[len - 2] = answer[len - 2] * option; // 길이가 2 이상일 경우, 이전 점수의 option 처리
+        let option = str === "*" ? 2 : -1;
+        let len = stack.length;
+        if (len >= 2) {
+          option === 2 ? (stack[len-2] *= option, stack[len-1] *= option) : stack[len-1] *= option // 스타상 이전과 현재 점수 2배, 아차상은 현재 점수 마이너스
+        } else {
+          stack[len-1] *= option;
         }
-        answer[len - 1] = answer[len - 1] * option; // 현재 점수의 option 처리
       }
     } else {
-      num++
+      digit++
     }
   }
-  return answer.reduce((acc, value) => acc + value, 0); 
+  return stack.reduce((cur, acc) => cur + acc, 0);
 }
-
-//[출처] : https://angwangho.github.io/algorithm-dartgame/
