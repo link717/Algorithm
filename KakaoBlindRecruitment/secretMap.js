@@ -15,7 +15,7 @@ const changeToBinary = (num, n) => {
   return leng === n ? num.toString(2) : Array(n-leng).fill(0).join("") + num.toString(2)
 }
 
-function solution(n, arr1, arr2) {
+const solution = (n, arr1, arr2) => {
   let answer = [];
   let arr1ToBinary = arr1.map((num) => changeToBinary(num, n));
   let arr2ToBinary = arr2.map((num) => changeToBinary(num, n));
