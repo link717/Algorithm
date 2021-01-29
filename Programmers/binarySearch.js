@@ -4,16 +4,17 @@
 
 const search = (nums, target) => {
   let left = 0;
-  let right = nums.length-1;
+  let right = (nums.length - 1);
   
   while(left <= right) {
-    let idx = Math.round((left+right)/2);
-    console.log(idx);
-    if (nums[idx] <= target) {
-      left = idx+1;
+    let idx = Math.floor((left + right) / 2);
+    if (nums[idx] < target) {
+      left = (idx + 1);
+    } else if (nums[idx] > target) {
+      right = (idx -1);
     } else {
-      right = idx-1;
+      return idx;
     }
   }
-  return (right >= 0 && nums[right] === target) ? right : -1;
+  return -1;
 }

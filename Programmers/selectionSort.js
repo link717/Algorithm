@@ -4,12 +4,16 @@
 
 const selectionSort = (nums) => {
   for (let i = 0; i < nums.length; i++) {
-    let compare = nums[i];
-    let min = Math.min(...nums.slice(i, nums.length+1))
-    
-    if (compare > min) {
-      nums[nums.indexOf(min)] = compare;
-      nums[i] = min;
+    let minIndex = i;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[j] < nums[minIndex]) {
+        minIndex = j;
+      }
+    }
+    if (i !== minIndex) {
+      let minNum = nums[minIndex];
+      nums[minIndex] = nums[i];
+      nums[i] = minNum;
     }
   }
   return nums;
