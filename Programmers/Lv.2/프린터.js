@@ -1,12 +1,12 @@
 function solution(priorities, location) {
   
-  let prioritiesWithIdx = priorities.map((priority, idx) => [idx, priority]);
+  let prioritiesWithIdx = priorities.map((priority, idx) => [priority, idx]);
   let printedList = [];
   
   
  while(prioritiesWithIdx.length > 0) {
-  let currentPriority = prioritiesWithIdx.shift();
-  let isUpperPriority = prioritiesWithIdx.every((priority) => currentPriority[1] >= priority[1]);
+  let currentDocument = prioritiesWithIdx.shift();
+  let isUpperPriority = prioritiesWithIdx.every((priorityWithIdx) => currentDocument[0] >= priorityWithIdx[0]);
   
     if (isUpperPriority) {
       printedList.push(currentPriority);
@@ -15,7 +15,7 @@ function solution(priorities, location) {
     }
  }
   
-  let myDocument = printedList.find((item) => item[0] == location);
+  let myDocument = printedList.find((document) => document[1] == location);
   
   return printedList.indexOf(myDocument) + 1;
 }
