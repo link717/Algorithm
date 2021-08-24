@@ -6,16 +6,18 @@
 */
 
 function solution(clothes) {
-  let closets = {};
-  for (let peice of clothes) {
-    closets[peice[1]] ? closets[peice[1]]++ : closets[peice[1]] = 1;
+  let clothesHash = {};
+
+  for (let clothe of clothes) {
+    let clotheType = clothe[1];
+    if (clothesHash[clotheType] == null) {
+      clothesHash[clotheType] = 1;
+    } else {
+      clothesHash[clotheType]++;
+    }
   }
-  let items = Object.values(closets);
-  if (items.length === 1) {
-    return items[0]
-  };
-  
-  let result = 1;
-  items.forEach(item => result *= (item + 1));
-  return result -1;
+
+  return (
+    Object.values(clothesHash).reduce((acc, cur) => acc * (cur + 1), 1) - 1
+  );
 }
