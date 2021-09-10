@@ -16,14 +16,15 @@ function solution(N, stages) {
   let answer = [];
   let failureRate = {};
   let pass = stages.length;
-  
-  for (let i = 1; i < N + 1; i++) {                           // Stage별 실패율 계산
+
+  for (let i = 1; i < N + 1; i++) {
+    // Stage별 실패율 계산
     let fail = 0;
     for (let stage of stages) {
       if (i === stage) fail++;
     }
     if (pass !== 0) {
-    failureRate[i] = fail/pass;
+      failureRate[i] = fail / pass;
     } else {
       failureRate[i] = 0;
     }
@@ -31,13 +32,39 @@ function solution(N, stages) {
     fail = 0;
   }
 
-  let desc = Object.values(failureRate).sort((a, b) => b - a)  // 실패율 내림차순 정렬
+  let desc = Object.values(failureRate).sort((a, b) => b - a); // 실패율 내림차순 정렬
   for (let k of desc) {
-    for (let j = 1; j < N + 1; j++) {                          // 내림차순 실패율의 Stage 값 확인
-      if (failureRate[j] === k && answer.indexOf(j) === -1) {  // 실패율이 같은 Stage의 경우, 중복 입력 제거 조건문
+    for (let j = 1; j < N + 1; j++) {
+      // 내림차순 실패율의 Stage 값 확인
+      if (failureRate[j] === k && answer.indexOf(j) === -1) {
+        // 실패율이 같은 Stage의 경우, 중복 입력 제거 조건문
         answer.push(j);
       }
-    }  
-  } 
+    }
+  }
   return answer;
+}
+
+// 21-09-10
+function solution(N, stages) {
+  //스테이지별 도달한 플레이어수 확인
+  let counts = Array(N).fill(0);
+  for (let stage of stages) {
+    if (counts[stage - 1] !== undefined) {
+      counts[stage - 1] += 1;
+    } else continue;
+  }
+
+  //스테이지별 실패율 계산
+  let stageInfos = Array(N);
+  let players = stages.length;
+  for (let i = 0; i < N; i++) {
+    stageInfos[i] = { stage: i + 1, failureRate: counts[i] / players };
+    players -= counts[i];
+  }
+
+  //실패율 기준으로 정렬 : 이미 스테이지 순으로 오름차순으로 정렬된 상태이므로 실패율이 같은 경우, 스테이지 오름차순으로 표기된다.
+  stageInfos.sort((prev, cur) => cur["failureRate"] - prev["failureRate"]);
+
+  return stageInfos.map((e) => e["stage"]);
 }

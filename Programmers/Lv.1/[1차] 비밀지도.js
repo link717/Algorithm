@@ -16,20 +16,45 @@
 
 const changeToBinary = (num, n) => {
   let leng = num.toString(2).length;
-  return leng === n ? num.toString(2) : Array(n-leng).fill(0).join("") + num.toString(2)
-}
+  return leng === n
+    ? num.toString(2)
+    : Array(n - leng)
+        .fill(0)
+        .join("") + num.toString(2);
+};
 
 const solution = (n, arr1, arr2) => {
   let answer = [];
   let arr1ToBinary = arr1.map((num) => changeToBinary(num, n));
   let arr2ToBinary = arr2.map((num) => changeToBinary(num, n));
-  
+
   for (let i = 0; i < n; i++) {
     let output = "";
     for (let j = 0; j < n; j++) {
-      (Number(arr1ToBinary[i][j]) || Number(arr2ToBinary[i][j])) ? output += "#" : output += " "
+      Number(arr1ToBinary[i][j]) || Number(arr2ToBinary[i][j])
+        ? (output += "#")
+        : (output += " ");
     }
     answer.push(output);
+  }
+  return answer;
+};
+
+// 21-09-10
+function solution(n, arr1, arr2) {
+  let answer = Array(n);
+
+  for (let i = 0; i < n; i++) {
+    let queue = Array(n).fill(" ");
+    let tmpCode = (
+      parseInt(arr1[i].toString(2)) + parseInt(arr2[i].toString(2))
+    ).toString();
+
+    for (let j of tmpCode) {
+      queue.shift();
+      j == "0" ? queue.push(" ") : queue.push("#");
+    }
+    answer[i] = queue.join("");
   }
   return answer;
 }

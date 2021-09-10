@@ -20,3 +20,22 @@ function solution(brown, yellow) {
     return condition1 && condition2;
   }
 }
+
+const nums = [8, 31, 48, 73, 3];
+
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let location = i - 1;
+    let pick = arr[i];
+
+    while (location >= 0 && pick < arr[location]) {
+      let swap = arr[location];
+      arr[location] = pick;
+      arr[i] = swap;
+      location--;
+    }
+  }
+  return arr;
+}
+
+insertionSort(nums);
