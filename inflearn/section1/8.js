@@ -9,10 +9,25 @@ let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
 
 function solution(arr) {
   let extra = arr.reduce((acc, cur) => acc + cur, 0) - 100;
-  let liar;
+  let liars;
   arr.forEach((one) => {
     let two = extra - one;
-    if (arr.indexOf(two) !== -1) liar = [one, two];
+    if (arr.indexOf(two) !== -1) liars = [one, two];
   });
-  return arr.filter((i) => i !== liar[0] && i !== liar[1]);
+  return arr.filter((num) => num !== liars[0] && num !== liars[1]);
+}
+
+function solution(arr) {
+  let answer = arr;
+  let sum = arr.reduce((acc, cur) => acc + cur, 0);
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (sum - (arr[i] + arr[j]) === 100) {
+        arr.splice(j, 1);
+        arr.splice(i, 1);
+      }
+    }
+  }
+  return answer;
 }
