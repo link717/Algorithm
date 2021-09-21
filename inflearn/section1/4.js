@@ -1,6 +1,7 @@
 // 자연수 N이 입력되면 1부터 N까지의 합을 출력하는 프로그램을 작성하세요.
 
-const n = 6;
+let n = 6;
+
 function solution(n) {
   let answer = 0;
   let end = n;
