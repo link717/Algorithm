@@ -11,13 +11,25 @@ let arr = [
 function solution(arr) {
   let answer = Number.MIN_SAFE_INTEGER;
   let n = arr.length;
-  let rowSum = 0,
-    colSum = 0;
+  let sum1 = 0,
+    sum2 = 0;
 
   for (let i = 0; i < n; i++) {
+    //sum1은 행 합, sum2는 열 합
+    sum1 = sum2 = 0;
     for (let j = 0; j < n; j++) {
-      rowSum += arr[i][j];
-      colSum += arr[j][i];
+      sum1 += arr[i][j];
+      sum2 += arr[j][i];
     }
+    answer = Math.max(answer, sum1, sum2);
   }
+
+  sum1 = sum2 = 0;
+  for (let i = 0; i < n; i++) {
+    //sum1은 왼쪽 -> 오른쪽 대각선 합, sum2는 오른쪽 -> 왼쪽 대각선 합
+    sum1 += arr[i][i];
+    sum2 += arr[i][n - i - 1];
+  }
+  answer = Math.max(answer, sum1, sum2);
+  return answer;
 }
