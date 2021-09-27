@@ -3,3 +3,21 @@
 
 let str = "teachermode";
 let alphabet = "e";
+
+function solution(str, alphabet) {
+  let p = 1000;
+  let answer = [];
+  //왼쪽 기준, alphabet으로부터 거리
+  for (let i = 0; i < str.length; i++) {
+    str[i] === alphabet ? (p = 0) : p++;
+    answer.push(p);
+  }
+
+  p = 1000;
+  //오른쪽 기준, alphabet으로부터 거리
+  for (let j = str.length - 1; j >= 0; j--) {
+    str[j] === alphabet ? (p = 0) : p++;
+    if (answer[j] > p) answer[j] = p;
+  }
+  return answer;
+}
