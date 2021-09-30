@@ -5,7 +5,7 @@
 
 let str = "found7, time: study; Yduts; emit, 7Dnuof";
 
-function solution(str) {
+function solution1(str) {
   let answer = "YES";
   let s = str
     .split("")
@@ -25,7 +25,7 @@ function solution(str) {
   return answer;
 }
 
-function solution(s) {
+function solution2(s) {
   let answer = "YES";
   // /[^a-z]/g  소문자 a-z가 아닌 것(^)을 모두(g: global) 찾아라
   let s = s.toLowerCase().replace(/[^a-z]/g, "");

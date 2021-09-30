@@ -4,12 +4,12 @@
 
 let str = "g0en2T0s8eSoft";
 
-function solution(str) {
+function solution1(str) {
   let answer = str.replace(/[^0-9]/g, "");
   return Number(answer);
 }
 
-function solution(str) {
+function solution2(str) {
   let answer = "";
   for (let x of str) {
     if (!isNaN(x)) answer += x;

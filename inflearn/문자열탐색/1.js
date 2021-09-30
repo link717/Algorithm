@@ -5,7 +5,7 @@
 
 let word = "gooG";
 
-function solution(word) {
+function solution1(word) {
   word = word.toLowerCase();
   let n = word.length;
   let mid = Math.floor(word.length / 2);
@@ -18,7 +18,7 @@ function solution(word) {
   return answer;
 }
 
-function solution(word) {
+function solution2(word) {
   word = word.toLowerCase();
   let reverse = word.split("").reverse().join("");
   let answer = word === reverse ? "YES" : "NO";

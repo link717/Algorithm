@@ -4,7 +4,7 @@
 
 let arr = [128, 460, 603, 40, 521, 137, 123];
 
-function solution(arr) {
+function solution1(arr) {
   let answer,
     max = Number.MIN_SAFE_INTEGER;
   for (let x of arr) {
@@ -24,7 +24,7 @@ function solution(arr) {
   return answer;
 }
 
-function solution(arr) {
+function solution2(arr) {
   let answer,
     max = Number.MIN_SAFE_INTEGER;
   for (let x of arr) {
