@@ -13,9 +13,9 @@ let arr = [
 ];
 
 function solution(budget, arr) {
-  let answer = Number.MIN_SAFE_INTEGER;
+  let answer = 0;
   for (let i = 0; i < arr.length; i++) {
-    let tmp = arr.sort((a, b) => a - b),
+    let tmp = arr.sort((a, b) => a[0] - b[0]),
       sum = budget,
       cnt = 0;
     tmp[i][0] = tmp[i][0] / 2;
@@ -25,10 +25,10 @@ function solution(budget, arr) {
         sum -= tmp[j];
         cnt++;
       } else {
-        if (cnt > answer) answer = cnt;
         break;
       }
     }
+    answer = Math.max(answer, cnt);
   }
   return answer;
 }
