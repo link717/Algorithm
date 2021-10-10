@@ -15,6 +15,7 @@ function solution(word) {
 }
 
 function solution(word) {
+  let answer = 0;
   for (let s of word) {
     if (s === s.toUpperCase()) answer++;
   }
