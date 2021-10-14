@@ -5,6 +5,7 @@ let coordinateX = [1, 2, 8, 4, 9];
 //결정 알고리즘에서는 해당 조건이 true인지 false인지 구분하는 것이 가장 중요하다.
 function count(arr, mid) {
   let cnt = 1;
+  //무조건 첫번째 위치에는 말을 배치하는 것이 좋다.
   let ep = arr[0];
   for (let i = 1; i < arr.length; i++) {
     //두 마구간 사이의 거리가 mid 보다 작을 경우에 말을 배치할 수 없다.
