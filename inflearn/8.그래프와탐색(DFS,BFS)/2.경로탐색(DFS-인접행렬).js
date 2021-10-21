@@ -13,7 +13,7 @@ let nodes = 5;
 
 function solution(graph, nodes) {
   let answer = [];
-  let matrix = Array.from({ length: nodes + 1 }, () =>
+  let adjArr = Array.from({ length: nodes + 1 }, () =>
     Array(nodes + 1).fill(0)
   );
   let ch = Array.from({ length: nodes + 1 }, () => 0);
@@ -21,7 +21,7 @@ function solution(graph, nodes) {
 
   //그래프를 이차원 배열로 변환
   for (let [a, b] of graph) {
-    matrix[a][b] = 1;
+    adjArr[a][b] = 1;
   }
 
   function DFS(v) {
@@ -29,7 +29,7 @@ function solution(graph, nodes) {
       answer.push(path.slice());
     } else {
       for (let i = 1; i <= nodes; i++) {
-        if (matrix[v][i] === 1 && ch[i] === 0) {
+        if (adjArr[v][i] === 1 && ch[i] === 0) {
           ch[i] = 1;
           path.push(i);
           DFS(i);
