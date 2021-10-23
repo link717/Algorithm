@@ -39,3 +39,38 @@ function solution(numbers) {
 
   return answer.size;
 }
+
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i <= Math.floor(Math.sqrt(num)); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+
+function solution(numbers) {
+  let answer = new Map();
+  let arr = numbers.split("");
+  let n = arr.length;
+  let ch = Array.from({ length: n }, () => 0);
+
+  function DFS(L, string) {
+    if (L > n) return;
+    if (L === n) {
+      if (isPrime(Number(string)) && string.length > 0) {
+        answer.set(Number(string)); //Map 자료 구조를 사용하여 중복 제거
+      }
+    } else {
+      for (let i = 0; i < n; i++) {
+        if (ch[i] === 0) {
+          ch[i] = 1;
+          DFS(L + 1, string + arr[i]);
+          DFS(L + 1, string);
+          ch[i] = 0;
+        }
+      }
+    }
+  }
+  DFS(0, "");
+  return answer.size;
+}

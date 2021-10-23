@@ -145,3 +145,26 @@ function solution(priorities, location) {
 테스트 19 〉	통과 (0.92ms, 30.1MB)
 테스트 20 〉	통과 (0.56ms, 30.3MB)
 */
+
+//2021-10-23
+function solution(priorities, location) {
+  let answer = 0;
+  let documents = priorities.map((priority, idx) => {
+    return { my: idx === location, val: priority };
+  });
+  let cnt = 0;
+
+  while (documents.length > 0) {
+    let tmp = documents.shift();
+    let hasUpperPriority = documents.some(
+      (document) => document["val"] > tmp["val"]
+    );
+    if (hasUpperPriority) {
+      documents.push(tmp);
+    } else {
+      answer++;
+      if (tmp["my"] === true) return answer;
+    }
+  }
+  return answer;
+}

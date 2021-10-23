@@ -9,7 +9,9 @@
 
 function solution(progresses, speeds) {
   let answer = [];
-  let days = progresses.map((progress, idx) => Math.ceil((100 - progress) / speeds[idx]));
+  let days = progresses.map((progress, idx) =>
+    Math.ceil((100 - progress) / speeds[idx])
+  );
   let count = 0;
   let maxDeploy = days[0];
   for (let j = 0; j < days.length; j++) {
@@ -19,8 +21,30 @@ function solution(progresses, speeds) {
       answer.push(count);
       count = 1;
       maxDeploy = days[j];
-    } 
+    }
   }
-  if (count !== 0) {answer.push(count)};
+  //cnt를 해서 나중에 넣는 방식이라 마지막 cnt를 확인해주지 않으면 마지막 작업이 정답에 담기지 않음
+  if (count !== 0) {
+    answer.push(count);
+  }
+  return answer;
+}
+
+//2021-10-23
+function solution(progresses, speeds) {
+  let answer = [0];
+  let days = progresses.map((progress, idx) =>
+    Math.ceil((100 - progress) / speeds[idx])
+  );
+  let maxDay = days[0];
+
+  for (let i = 0, j = 0; i < progresses.length; i++) {
+    if (maxDay >= days[i]) {
+      answer[j] += 1;
+    } else {
+      maxDay = days[i];
+      answer[++j] = 1;
+    }
+  }
   return answer;
 }

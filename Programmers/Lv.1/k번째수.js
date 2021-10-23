@@ -19,3 +19,15 @@ function solution(array, commands) {
   }
   return answer;
 }
+
+//2021-10-23
+function solution(array, commands) {
+  let answer = [];
+  for (let [sPosition, ePosition, postion] of commands) {
+    let tmp = array.slice(sPosition - 1, ePosition).sort((a, b) => a - b)[
+      postion - 1
+    ];
+    answer.push(tmp);
+  }
+  return answer;
+}
