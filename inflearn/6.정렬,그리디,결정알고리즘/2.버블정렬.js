@@ -5,7 +5,7 @@ function solution(nums) {
   //루프가 1회 끝난 시점에는 맨 마지막 위치에 배열의 가장 큰 수가 자리잡게 된다.
   let arr = [...nums];
   for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - (i + 1); j++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
     }
   }
