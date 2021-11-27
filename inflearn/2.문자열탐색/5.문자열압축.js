@@ -4,7 +4,7 @@
 
 let str = "KKHSSSSSSSE";
 
-function solution() {
+function solution(str) {
   let answer = "";
   let cnt = 1;
 
