@@ -17,7 +17,15 @@ function solution(clothes) {
     }
   }
 
-  return (
-    Object.values(clothesHash).reduce((acc, cur) => acc * (cur + 1), 1) - 1
-  );
+  return Object.values(clothesHash).reduce((acc, cur) => acc * (cur + 1), 1) - 1;
+}
+
+// 2023-03-16
+function solution(clothes) {
+  const myClothesMap = new Map();
+  clothes.forEach((el) => {
+    const [name, type] = el;
+    myClothesMap[type] ? myClothesMap[type]++ : (myClothesMap[type] = 1);
+  });
+  return Object.values(myClothesMap).reduce((prev, cur) => prev * ++cur, 1) - 1;
 }

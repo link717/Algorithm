@@ -8,24 +8,10 @@ Return true if there is a cycle in the linked list. Otherwise, return false.
 */
 
 /*
-  Definition for singly-linked list.
-  function ListNode(val) {
-      this.val = val;
-      this.next = null;
-  }
- */
-
-/*
-  @param {ListNode} head
-  @return {boolean}
- */
-
-/*
 트랙을 뛰는 선수 a, b를 상상해보자.
 트랙이 직선 코스면 선수 a, b는 만나지 않는다.
 트랙이 둥근 코스면 선수 a, b는 만나게 된다.
 */
-
 var hasCycle = function (head) {
   let slowRunner = head;
   let fastRunner = head;

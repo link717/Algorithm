@@ -4,7 +4,7 @@ let a = 6;
 let b = 7;
 let c = 11;
 
-function solution(a, b, c) {
+function solution1(a, b, c) {
   // 세 변의 길이를 알 때: 가장 긴변의 길이가 두변의 길이의 합보다 작아야한다.
   let maxNum;
   let sum;
@@ -20,10 +20,10 @@ function solution(a, b, c) {
     sum = a + b;
   }
 
-  return maxNum < sum ? "YES" : "NO";
+  return maxNum < sum ? 'YES' : 'NO';
 }
 
-function solution(a, b, c) {
+function solution2(a, b, c) {
   let maxNum;
   let sum = a + b + c;
 
@@ -31,5 +31,5 @@ function solution(a, b, c) {
   if (b > c) maxNum = b;
   maxNum = c;
 
-  return maxNum < sum - maxNum ? "YES" : "NO";
+  return maxNum < sum - maxNum ? 'YES' : 'NO';
 }

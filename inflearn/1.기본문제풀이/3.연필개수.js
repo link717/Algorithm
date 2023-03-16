@@ -3,5 +3,5 @@
 let n = 25;
 
 function solution(n) {
-  return n % 12 == 0 ? 1 : Math.ceil(n / 12);
+  return n % 12 === 0 ? 1 : Math.ceil(n / 12);
 }

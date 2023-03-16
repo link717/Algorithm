@@ -2,7 +2,7 @@
 
 let arr = [5, 3, 7, 11, 2, 15, 17];
 
-function solution(arr) {
+function solution1(arr) {
   let answer;
 
   for (let i = 0; i < arr.length; i++) {
@@ -18,7 +18,7 @@ function solution(arr) {
   return answer;
 }
 
-function solution(arr) {
+function solution2(arr) {
   let answer,
     min = Number.MAX_SAFE_INTEGER;
   for (let i = 0; i < arr.length; i++) {
@@ -27,3 +27,21 @@ function solution(arr) {
   answer = min;
   return answer;
 }
+
+function solution3(arr) {
+  const answer = Math.min(...arr);
+  return answer;
+}
+
+/**
+ * function.apply(thisArg, [argsArray])
+ * apply는 argsArray 배열의 원소 값들을 가져온다
+ * null 을 첫번째 인자로 사용하면 context는 window 객체가 된다.
+ * 가져온 원소의 값들을 thisArg가 칭하는 function 함수의 인자로 받아 실행시킨다.
+ */
+function solution4(arr) {
+  const answer = Math.min.apply(null, arr);
+  return answer;
+}
+
+console.log(Math.max(...arr)); // 최대값
