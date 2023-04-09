@@ -11,18 +11,43 @@
 
 function solution(n, lost, reserve) {
   let answer = 0;
-  let diffLost = lost.filter(el => !reserve.includes(el)).sort((a, b) => a - b);
-  let diffReserve = reserve.filter(el => !lost.includes(el)).sort((a, b) => a - b);
-  
+  let diffLost = lost.filter((el) => !reserve.includes(el)).sort((a, b) => a - b);
+  let diffReserve = reserve.filter((el) => !lost.includes(el)).sort((a, b) => a - b);
+
   answer += n - diffLost.length;
-  
+
   for (let num of diffReserve) {
     for (let i = 0; i < diffLost.length; i++) {
       if (diffLost[i] === num - 1 || diffLost[i] === num + 1) {
         diffLost.shift();
-        answer++
+        answer++;
       }
     }
   }
+  return answer;
+}
+
+function solution(n, lost, reserve) {
+  let answer = 0;
+
+  // 여벌 체육복이 있는 학생 중 체육복을 읽어버린 학생은 lost, reserve에서 둘 다 제외
+  const getFilteredStolenStudents = (students, compare) => {
+    return students.filter((student) => !compare.includes(student)).sort((a, b) => a - b);
+  };
+
+  const filteredLost = getFilteredStolenStudents(lost, reserve);
+  const filteredReserve = getFilteredStolenStudents(reserve, lost);
+
+  // lost, reserve에 해당하지 않는 학생은 수업을 들을 수 있음
+  answer += n - filteredLost.length;
+
+  filteredLost.forEach((lostStudent) => {
+    for (let i = 0; i < filteredReserve.length; i++) {
+      if (filteredReserve[i] - 1 <= lostStudent && filteredReserve[i] + 1 >= lostStudent) {
+        answer++;
+        filteredReserve.shift();
+      }
+    }
+  });
   return answer;
 }
