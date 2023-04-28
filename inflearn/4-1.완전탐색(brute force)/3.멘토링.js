@@ -8,29 +8,29 @@
 //열: 각각의 테스트 시행
 
 let tests = [
-  [3, 4, 1, 2],
+  [3, 4, 1, 2], // 3번 학생이 1등, 4번 학생이 2등했다고 이해해야 한다.
   [4, 3, 2, 1],
   [3, 1, 4, 2],
 ];
 
 function solution(tests) {
   let answer = 0;
-  let m = tests.length;
-  let n = tests[0].length;
+  let testCnt = tests.length;
+  let studentCnt = tests[0].length;
 
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= n; j++) {
+  for (let mentor = 1; mentor <= studentCnt; mentor++) {
+    for (let mentee = 1; mentee <= studentCnt; mentee++) {
       let cnt = 0;
-      for (let dx = 0; dx < m; dx++) {
-        let pi,
-          pj = 0;
-        for (let dy = 0; dy < n; dy++) {
-          if (tests[dx][dy] === i) pi = dy;
-          if (tests[dx][dy] === j) pj = dy;
+      for (let dx = 0; dx < testCnt; dx++) {
+        let mentorRank,
+          menteeRank = 0;
+        for (let dy = 0; dy < studentCnt; dy++) {
+          if (tests[dx][dy] === mentor) mentorRank = dy;
+          if (tests[dx][dy] === mentee) menteeRank = dy;
         }
-        if (pi < pj) cnt++;
+        if (mentorRank < menteeRank) cnt++;
       }
-      if (cnt === m) answer++;
+      if (cnt === testCnt) answer++;
     }
   }
   return answer;

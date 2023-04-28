@@ -14,21 +14,24 @@ let arr = [
 
 function solution(budget, arr) {
   let answer = 0;
-  for (let i = 0; i < arr.length; i++) {
-    let tmp = arr.sort((a, b) => a[0] - b[0]),
-      sum = budget,
-      cnt = 0;
-    tmp[i][0] = tmp[i][0] / 2;
-    tmp = tmp.map((el) => el[0] + el[1]);
-    for (let j = 0; j < arr.length; j++) {
-      if (sum >= tmp[j]) {
-        sum -= tmp[j];
-        cnt++;
+  const n = arr.length;
+
+  for (let i = 0; i < n; i++) {
+    const sortedArr = arr.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+    let sum = budget,
+      presentCnt = 0;
+    sortedArr[i][0] = sortedArr[i][0] / 2;
+    for (let j = 0; j < n; j++) {
+      const [productPrice, shippingFee] = sortedArr[j];
+      const totalPrice = productPrice + shippingFee;
+      if (sum >= totalPrice) {
+        sum -= totalPrice;
+        presentCnt++;
       } else {
         break;
       }
     }
-    answer = Math.max(answer, cnt);
+    answer = Math.max(answer, presentCnt);
   }
   return answer;
 }
