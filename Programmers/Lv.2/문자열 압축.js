@@ -19,26 +19,26 @@
 */
 
 function solution(s) {
-  let leng = s.length;
+  let n = s.length;
   let stack = [];
-  for (let strLeng = 1; strLeng < leng/2 + 1; strLeng++) {
+  for (let i = 1; i < Math.ceil(n / 2); i++) {
     let count = 0;
-    let compact = "";
-    for (let start = 0; start <leng; start+=strLeng) {
-      let subWord1 = s.substr(start, strLeng);
-      let subWord2 = s.substr(start + strLeng, strLeng);
+    let compressedWord = '';
+    for (let start = 0; start < n; start += i) {
+      let subWord1 = s.substring(start, i);
+      let subWord2 = s.substring(start + i, i);
       if (subWord1 === subWord2) {
         count++;
       } else {
         if (count >= 1) {
-          compact = compact + (count + 1) + subWord1;
+          compressedWord = compressedWord + (count + 1) + subWord1;
           count = 0;
         } else {
-          compact = compact + subWord1;
+          compressedWord = compressedWord + subWord1;
         }
       }
     }
-    stack.push(compact.length);
+    stack.push(compressedWord.length);
   }
   return Math.min(...stack);
 }
