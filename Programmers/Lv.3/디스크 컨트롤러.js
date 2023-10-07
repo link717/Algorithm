@@ -27,7 +27,7 @@ function solution(jobs) {
     if (priorityQueue.length > 0) {
       const [start, time] = priorityQueue[0];
       // 이전 task의 시작시간 + 현재 task의 종료시간 = 다음 task의 시작시간
-      startTime += end;
+      startTime += time;
       // 다음 task의 시작시간 - 현재 task의 시작시간 = 현재 task의 대기시간 + 현재 task의 수행시간
       spendTime += startTime - start;
       priorityQueue.shift();
